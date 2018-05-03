@@ -7,6 +7,11 @@ import java.util.function.Predicate;
 
 /**
  * Created by evan01.zhang on 2018/5/2.
+ * <p>
+ * Function 提供任意一种类型的参数，返回另外一个任意类型返回值   -> stream.map
+ * Consumer 提供任意一种类型的参数，返回空值                    -> stream.forEach
+ * Supplier 参数为空，得到任意一种类型的返回值                  -> stream.generate
+ * Predicate 提供任意一种类型的参数，返回boolean返回值          -> stream.filter
  */
 public class FunctionInterface {
     static class Person {
@@ -61,6 +66,12 @@ public class FunctionInterface {
                 .stream()
                 .filter((p) -> p.lastName.startsWith("z"))
                 .forEach(FunctionInterface::printFirstName);
+
+        System.out.println("-------------");
+        personList.stream()
+                .filter((p) -> p.lastName.startsWith("z"))
+                .map((p) -> p.firstName)
+                .forEach(System.out::println);
     }
 
     public static void printFun(List<Person> personList) {
@@ -116,7 +127,7 @@ public class FunctionInterface {
         });
     }
 
-    public static void printFirstName(Person person){
+    public static void printFirstName(Person person) {
         System.out.println(person.firstName);
     }
 
